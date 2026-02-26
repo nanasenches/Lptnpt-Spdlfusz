@@ -1,2 +1,16 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# OpenRocket project files
+*.ork binary
+
+# Prevent automatic line ending conversion
+*.ork -text
+
+# Mark compiled/exports folder as generated content
+exports/** linguist-generated=true
+
+# Ignore diff attempts for .ork files (binary XML-based format)
+*.ork diff=none
+
+# Treat exported PDFs and images as binary
+*.pdf binary
+*.png binary
+*.jpg binary
