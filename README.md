@@ -1,5 +1,4 @@
 🚀 **Projetos OpenRocket**
-
 Repositório destinado ao versionamento dos modelos desenvolvidos no OpenRocket. 
 Arquivos .eng também fazem parte do repositório quando utilizados nas simulações.
 
