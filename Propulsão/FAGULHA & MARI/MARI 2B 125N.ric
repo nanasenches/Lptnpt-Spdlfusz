@@ -1,0 +1,52 @@
+data:
+  config:
+    ambPressure: 101325.0
+    burnoutThrustThres: 0.1
+    burnoutWebThres: 2.54e-05
+    flowSeparationWarnPercent: 0.05
+    mapDim: 750
+    maxMachNumber: 0.7
+    maxMassFlux: 1406.4697609001405
+    maxPressure: 10342500.0
+    minPortThroat: 2.0
+    sepPressureRatio: 0.4
+    timestep: 0.03
+  grains:
+  - properties:
+      coreDiameter: 0.015880000000000002
+      diameter: 0.031
+      inhibitedEnds: Neither
+      length: 0.055
+    type: BATES
+  - properties:
+      coreDiameter: 0.015880000000000002
+      diameter: 0.031
+      inhibitedEnds: Neither
+      length: 0.055
+    type: BATES
+  nozzle:
+    convAngle: 45.0
+    divAngle: 12.5
+    efficiency: 0.95
+    erosionCoeff: 0.0
+    exit: 0.01498
+    slagCoeff: 0.0
+    throat: 0.006500000000000002
+    throatLength: 0.0
+  propellant:
+    density: 1712.73
+    name: "KNSB KOSMOS PADR\xC3O (11) (1)"
+    tabs:
+    - a: 0.000279
+      k: 1.1361
+      m: 39.890001
+      maxPressure: 10500000.0
+      minPressure: 140000.0
+      n: 0.229
+      t: 1601.0
+type: !!python/object/apply:uilib.fileIO.fileTypes
+- 3
+version: !!python/tuple
+- 0
+- 6
+- 1

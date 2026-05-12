@@ -1,0 +1,20 @@
+{
+    "tr": "4.5",
+    "k": "1.135",
+    "pc": "3.9",
+    "pe": "1",
+    "ang_div": "12.5",
+    "ang_cov": "45",
+    "len_pct": "0.8",
+    "rounding": "2.00",
+    "propellant": "KNSB (Sorbitol)",
+    "solver": "Adapted Rao Method Solver (Rao)",
+    "unit_prefs": {
+        "tr": "mm",
+        "pc": "MPa",
+        "pe": "atm",
+        "pa": "Pa"
+    },
+    "file_type": "nozzle_calc_project",
+    "version": "3.4.12"
+}
