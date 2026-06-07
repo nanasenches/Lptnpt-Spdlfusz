@@ -1,0 +1,76 @@
+data:
+  config:
+    ambPressure: 101325.0
+    burnoutThrustThres: 0.1
+    burnoutWebThres: 2.54e-05
+    flowSeparationWarnPercent: 0.05
+    mapDim: 750
+    maxMachNumber: 0.7
+    maxMassFlux: 9760.999999999998
+    maxPressure: 20685000.0
+    minPortThroat: 2.0
+    sepPressureRatio: 0.4
+    timestep: 0.01
+  grains:
+  - properties:
+      coreDiameter: 0.0381
+      diameter: 0.09
+      inhibitedEnds: Neither
+      length: 0.14
+    type: BATES
+  - properties:
+      coreDiameter: 0.0381
+      diameter: 0.09
+      inhibitedEnds: Neither
+      length: 0.14
+    type: BATES
+  - properties:
+      coreDiameter: 0.0381
+      diameter: 0.09
+      inhibitedEnds: Neither
+      length: 0.14
+    type: BATES
+  - properties:
+      coreDiameter: 0.0381
+      diameter: 0.09
+      inhibitedEnds: Neither
+      length: 0.14
+    type: BATES
+  - properties:
+      coreDiameter: 0.0381
+      diameter: 0.09
+      inhibitedEnds: Neither
+      length: 0.14
+    type: BATES
+  - properties:
+      coreDiameter: 0.0381
+      diameter: 0.09
+      inhibitedEnds: Neither
+      length: 0.14
+    type: BATES
+  nozzle:
+    convAngle: 45.0
+    divAngle: 12.5
+    efficiency: 0.905
+    erosionCoeff: 0.0
+    exit: 0.072058898
+    slagCoeff: 0.0
+    throat: 0.027
+    throatLength: 0.0
+  propellant:
+    density: 1750.0062279771805
+    name: Platinha
+    tabs:
+    - a: 0.00027900024599504785
+      k: 1.1361
+      m: 39.89
+      maxPressure: 10500000.002800003
+      minPressure: 140000.00325500002
+      n: 0.229
+      t: 1601.0
+type: !!python/object/apply:uilib.fileIO.fileTypes
+- 3
+version: !!python/tuple
+- 0
+- 6
+- 1
