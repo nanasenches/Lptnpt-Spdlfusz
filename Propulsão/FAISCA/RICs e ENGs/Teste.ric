@@ -16,28 +16,28 @@ data:
       coreDiameter: 0.016300000000000002
       diameter: 0.042
       inhibitedEnds: Neither
-      length: 0.0688
+      length: 0.1
     type: BATES
   - properties:
       coreDiameter: 0.016300000000000002
       diameter: 0.042
       inhibitedEnds: Neither
-      length: 0.0688
+      length: 0.1
     type: BATES
   - properties:
       coreDiameter: 0.016300000000000002
       diameter: 0.042
       inhibitedEnds: Neither
-      length: 0.0688
+      length: 0.1
     type: BATES
   nozzle:
     convAngle: 45.5
     divAngle: 12.5
-    efficiency: 0.95
+    efficiency: 0.7
     erosionCoeff: 0.0
     exit: 0.0237
     slagCoeff: 0.0
-    throat: 0.009499999999999998
+    throat: 0.011
     throatLength: 0.0
   propellant:
     density: 1750.0
