@@ -1,0 +1,58 @@
+data:
+  config:
+    ambPressure: 101325.0
+    burnoutThrustThres: 0.1
+    burnoutWebThres: 2.54e-05
+    flowSeparationWarnPercent: 0.05
+    mapDim: 750
+    maxMachNumber: 0.7
+    maxMassFlux: 1406.469761
+    maxPressure: 10342500.0
+    minPortThroat: 2.0
+    sepPressureRatio: 0.4
+    timestep: 0.03
+  grains:
+  - properties:
+      coreDiameter: 0.016300000000000002
+      diameter: 0.042
+      inhibitedEnds: Neither
+      length: 0.095
+    type: BATES
+  - properties:
+      coreDiameter: 0.016300000000000002
+      diameter: 0.042
+      inhibitedEnds: Neither
+      length: 0.095
+    type: BATES
+  - properties:
+      coreDiameter: 0.016300000000000002
+      diameter: 0.042
+      inhibitedEnds: Neither
+      length: 0.095
+    type: BATES
+  nozzle:
+    convAngle: 45.5
+    divAngle: 12.5
+    efficiency: 0.7
+    erosionCoeff: 0.0
+    exit: 0.0237
+    slagCoeff: 0.0
+    throat: 0.0095
+    throatLength: 0.0
+  propellant:
+    density: 1750.0
+    name: KNSB - Deimos
+    tabs:
+    - a: 0.000279
+      k: 1.1351000000000002
+      m: 39.89
+      maxPressure: 10500000.0
+      minPressure: 140000.0
+      n: 0.229
+      t: 1599.0
+type: !!python/object/apply:uilib.fileIO.fileTypes
+- 3
+version: !!python/tuple
+- 0
+- 6
+- 1
