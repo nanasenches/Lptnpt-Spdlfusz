@@ -51,11 +51,11 @@ data:
   nozzle:
     convAngle: 45.0
     divAngle: 12.5
-    efficiency: 0.9
+    efficiency: 0.82
     erosionCoeff: 0.0
     exit: 0.09
     slagCoeff: 0.0
-    throat: 0.03900000000000001
+    throat: 0.039
     throatLength: 0.0
   propellant:
     density: 1712.73
