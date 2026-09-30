@@ -31,19 +31,19 @@ data:
       length: 0.21
     type: BATES
   - properties:
-      coreDiameter: 0.06
+      coreDiameter: 0.0635
       diameter: 0.135
       inhibitedEnds: Neither
       length: 0.21
     type: BATES
   - properties:
-      coreDiameter: 0.075
+      coreDiameter: 0.07629999999999999
       diameter: 0.135
       inhibitedEnds: Neither
       length: 0.21
     type: BATES
   - properties:
-      coreDiameter: 0.075
+      coreDiameter: 0.07629999999999999
       diameter: 0.135
       inhibitedEnds: Neither
       length: 0.21
@@ -58,8 +58,8 @@ data:
     throat: 0.039
     throatLength: 0.0
   propellant:
-    density: 1712.73
-    name: "KNSB KOSMOS PADR\xC3O (11) (1)"
+    density: 1711.0
+    name: KNSB KOSMOS 93%
     tabs:
     - a: 0.000279
       k: 1.1361
