@@ -1,0 +1,83 @@
+name: Gerar e publicar APK
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  android-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.34.9
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: gradle
+
+      - name: Configurar Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Instalar plataforma Android 36
+        run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
+
+      - name: Conferir se a tag corresponde à versão do app
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          node --input-type=module -e 'import fs from "node:fs"; const gradle = fs.readFileSync("android/app/build.gradle", "utf8"); const match = gradle.match(/^\s*versionName\s+"([^"]+)"\s*$/m); const tag = process.env.RELEASE_TAG.replace(/^v/, ""); if (!match || match[1] !== tag) { console.error(`Tag ${tag} precisa corresponder a versionName ${match?.[1] ?? "ausente"}.`); process.exit(1); }'
+
+      - name: Preparar chave de assinatura
+        env:
+          ANDROID_RELEASE_KEYSTORE_BASE64: ${{ secrets.ANDROID_RELEASE_KEYSTORE_BASE64 }}
+        run: |
+          test -n "$ANDROID_RELEASE_KEYSTORE_BASE64"
+          mkdir -p android/signing
+          printf '%s' "$ANDROID_RELEASE_KEYSTORE_BASE64" | base64 --decode > android/signing/kosmos-mari-release.jks
+
+      - name: Instalar dependências
+        run: pnpm install --frozen-lockfile
+
+      - name: Validar catálogo e compilar APK
+        env:
+          MARI_KEYSTORE_PATH: signing/kosmos-mari-release.jks
+          MARI_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_RELEASE_STORE_PASSWORD }}
+          MARI_KEY_PASSWORD: ${{ secrets.ANDROID_RELEASE_KEY_PASSWORD }}
+          MARI_KEY_ALIAS: ${{ secrets.ANDROID_RELEASE_KEY_ALIAS }}
+        run: |
+          node scripts/validate-rocket-catalog.mjs
+          pnpm android:sync
+          cd android
+          chmod +x ./gradlew
+          ./gradlew --no-daemon assembleRelease
+
+      - name: Anexar APK à Release do GitHub
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          version="${RELEASE_TAG#v}"
+          apk="android/app/build/outputs/apk/release/app-release.apk"
+          test -s "$apk"
+          asset="KosmosPy-${version}-release.apk"
+          cp "$apk" "$asset"
+          gh release create "$RELEASE_TAG" "$asset" --verify-tag --generate-notes --title "KosmosPy ${version}"

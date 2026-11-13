@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "foguetes": [
+    {
+      "id": "atlas",
+      "nome": "Atlas",
+      "versao_dados": "1.0.0",
+      "manifesto": "atlas/manifest.json"
+    },
+    {
+      "id": "deimos-ii",
+      "nome": "Deimos II",
+      "versao_dados": "1.0.0",
+      "manifesto": "deimos-ii/manifest.json"
+    }
+  ]
+}

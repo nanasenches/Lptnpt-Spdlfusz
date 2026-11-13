@@ -1,0 +1,38 @@
+MARI - MODULO DE ANALISE DE ROTAS E IMPACTO
+Kosmos Rocketry - Skunk Works Division
+
+Este pacote contem o codigo-fonte necessario para alterar e gerar o APK
+localmente.
+
+COMECE POR AQUI
+1. Leia docs\Guia-MARI-Manutencao-e-Geracao-do-APK.pdf.
+   Leia tambem docs\FOGUETES-E-RELEASES.md para o catalogo de dados e o novo fluxo de release.
+2. Instale Node.js 22, pnpm, Android Studio, Android SDK 36 e JDK 21.
+3. Execute pnpm install --frozen-lockfile.
+4. Copie a chave oficial para android\signing\kosmos-mari-release.jks.
+5. O script de release incrementa versionCode e versionName automaticamente.
+6. Clique duas vezes em GERAR-NOVO-APK.bat ou execute scripts\build-release-apk.ps1.
+
+CATALOGO DE FOGUETES
+Os manifestos e dados oficiais ficam na pasta foguetes\ na raiz do projeto. Use `pnpm rocket:new -- id "Nome"`
+para criar uma pasta baseada num foguete existente e `pnpm rocket:validate` para validar
+o catalogo. A pasta nova herda dados do modelo escolhido; revise e substitua todos os
+parametros e arquivos antes de usar. O app oferece download e simulacao generica para os
+componentes RocketPy v1 descritos no guia docs\FOGUETES-E-RELEASES.md.
+
+ASSINATURA
+A chave e as senhas nao acompanham este ZIP. Elas sao entregues separadamente.
+Nunca salve a chave ou as senhas em Git.
+
+VERSAO DE REFERENCIA
+Nome do aplicativo: KosmosPy (mantem a identidade de assinatura e applicationId)
+Consulte a versao e versionCode atuais em android\app\build.gradle.
+Application ID: br.com.codextruturas.consolevoo
+
+IMPORTANTE
+O primeiro APK com a chave oficial da Kosmos exige desinstalar a versao antiga,
+que foi assinada com uma chave de desenvolvimento. Depois dessa migracao, novas
+versoes poderao ser instaladas como atualizacao se usarem a mesma chave e um
+versionCode maior.
+
+

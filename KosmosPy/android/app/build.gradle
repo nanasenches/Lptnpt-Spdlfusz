@@ -1,0 +1,98 @@
+import java.util.Properties
+
+apply plugin: 'com.android.application'
+
+def mariSigningProperties = new Properties()
+def mariSigningPropertiesFile = rootProject.file('keystore.properties')
+if (mariSigningPropertiesFile.exists()) {
+    mariSigningPropertiesFile.withInputStream { mariSigningProperties.load(it) }
+}
+
+def mariSigningValue = { String propertyName, String environmentName ->
+    def environmentValue = System.getenv(environmentName)
+    environmentValue ?: mariSigningProperties.getProperty(propertyName)
+}
+
+def mariStoreFile = mariSigningValue('storeFile', 'MARI_KEYSTORE_PATH')
+def mariStorePassword = mariSigningValue('storePassword', 'MARI_KEYSTORE_PASSWORD')
+def mariKeyAlias = mariSigningValue('keyAlias', 'MARI_KEY_ALIAS')
+def mariKeyPassword = mariSigningValue('keyPassword', 'MARI_KEY_PASSWORD')
+def mariSigningConfigured = [mariStoreFile, mariStorePassword, mariKeyAlias, mariKeyPassword]
+    .every { it != null && !it.toString().trim().isEmpty() }
+
+android {
+    namespace = "br.com.codextruturas.consolevoo"
+    compileSdk = rootProject.ext.compileSdkVersion
+    signingConfigs {
+        release {
+            if (mariSigningConfigured) {
+                storeFile rootProject.file(mariStoreFile)
+                storePassword mariStorePassword
+                keyAlias mariKeyAlias
+                keyPassword mariKeyPassword
+            }
+        }
+    }
+    defaultConfig {
+        applicationId "br.com.codextruturas.consolevoo"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 10
+        versionName "1.5.4"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        aaptOptions {
+             // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
+             // Default: https://android.googlesource.com/platform/frameworks/base/+/282e181b58cf72b6ca770dc7ca5f91f135444502/tools/aapt/AaptAssets.cpp#61
+            ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
+        }
+    }
+    buildTypes {
+        release {
+            if (mariSigningConfigured) {
+                signingConfig signingConfigs.release
+            }
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+repositories {
+    flatDir{
+        dirs '../capacitor-cordova-android-plugins/src/main/libs', 'libs'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+    implementation "androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion"
+    implementation "androidx.core:core-splashscreen:$coreSplashScreenVersion"
+    implementation project(':capacitor-android')
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
+    implementation project(':capacitor-cordova-android-plugins')
+}
+
+apply from: 'capacitor.build.gradle'
+
+gradle.taskGraph.whenReady { taskGraph ->
+    def buildingRelease = taskGraph.allTasks.any {
+        it.name == 'assembleRelease' || it.name == 'bundleRelease' || it.name == 'packageRelease'
+    }
+    if (buildingRelease && !mariSigningConfigured) {
+        throw new GradleException(
+            'Assinatura release ausente. Use scripts/build-release-apk.ps1 ou configure android/keystore.properties.'
+        )
+    }
+}
+
+try {
+    def servicesJSON = file('google-services.json')
+    if (servicesJSON.text) {
+        apply plugin: 'com.google.gms.google-services'
+    }
+} catch(Exception e) {
+    logger.info("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
+}

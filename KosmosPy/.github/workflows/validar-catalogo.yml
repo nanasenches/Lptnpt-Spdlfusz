@@ -1,0 +1,27 @@
+name: Validar catálogo de foguetes
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'foguetes/**'
+      - 'scripts/validate-rocket-catalog.mjs'
+      - '.github/workflows/validar-catalogo.yml'
+  pull_request:
+    paths:
+      - 'foguetes/**'
+      - 'scripts/validate-rocket-catalog.mjs'
+      - '.github/workflows/validar-catalogo.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o repositório
+        uses: actions/checkout@v4
+      - name: Validar catálogo e arquivos dos foguetes
+        run: node scripts/validate-rocket-catalog.mjs

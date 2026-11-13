@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "id": "deimos-ii",
+  "nome": "Deimos II",
+  "versao_dados": "1.0.0",
+  "descricao": "Configuração de referência do Deimos II usada pela MARI.",
+  "rocketpy_version": "1.13.0",
+  "incerteza": {
+    "massa_kg": 0.02,
+    "cg_m": 0.005,
+    "escala_empuxo": 0.02,
+    "cd_recuperacao_m2": 0.1,
+    "atraso_recuperacao_s": 1.0,
+    "densidade_graos_kg_m3": 10,
+    "separacao_graos_m": 0.0005
+  },
+  "arrasto": { "interpolacao": "spline", "extrapolacao": "constant" },
+  "ambiente": {
+    "latitude": -21.9430589,
+    "longitude": -48.9524268,
+    "elevacao_m": 493.0,
+    "referencial": "SIRGAS2000",
+    "altura_maxima_m": 2500.0
+  },
+  "arquivos": {
+    "motor": "empuxo.eng",
+    "arrasto_ligado": "arrasto_on.csv",
+    "arrasto_desligado": "arrasto_off.csv",
+    "modelo_completo": "",
+    "modelo_corpo": "",
+    "modelo_coifa": ""
+  },
+  "foguete": {
+    "raio_m": 0.03415,
+    "massa_kg": 2.79,
+    "inercia_kg_m2": [0.265, 0.265, 0.00255],
+    "centro_massa_sem_motor_m": 0.686,
+    "orientacao": "tail_to_nose",
+    "motor": {
+      "posicao_m": 0.005,
+      "massa_seca_kg": 0.51,
+      "inercia_seca_kg_m2": [0.001, 0.001, 0.00004518],
+      "tempo_queima_s": 3.048,
+      "centro_massa_seco_m": 0.190255,
+      "numero_graos": 3,
+      "densidade_graos_kg_m3": 1500.0,
+      "raio_externo_grao_m": 0.021,
+      "raio_interno_inicial_grao_m": 0.00635,
+      "altura_inicial_grao_m": 0.11,
+      "separacao_graos_m": 0.003,
+      "centro_massa_graos_m": 0.194148,
+      "posicao_bocal_m": 0.0,
+      "raio_bocal_m": 0.01185,
+      "raio_garganta_m": 0.00475,
+      "orientacao_coordenadas": "nozzle_to_combustion_chamber",
+      "interpolacao": "linear"
+    },
+    "componentes": [
+      { "tipo": "nose", "nome": "Coifa_Eliptica", "comprimento_m": 0.098, "formato": "elliptical", "posicao_m": 1.315 },
+      { "tipo": "trapezoidal_fins", "numero": 3, "corda_raiz_m": 0.1, "corda_ponta_m": 0.03576, "envergadura_m": 0.089, "posicao_m": 0.166, "comprimento_enflechamento_m": 0.12 },
+      { "tipo": "tail", "nome": "Boat Tail (Semi-Triangular)", "raio_superior_m": 0.03415, "raio_inferior_m": 0.0238, "comprimento_m": 0.066, "posicao_m": 0.066 },
+      { "tipo": "rail_buttons", "posicao_superior_m": 0.862, "posicao_inferior_m": 0.082, "angulo_deg": 180.0 }
+    ],
+    "recuperacao": [
+      { "nome": "Main", "tipo": "main", "cd_area_m2": 1.561, "diametro_m": 1.4, "gatilho": "apogee", "atraso_nominal_s": 5.5, "atraso_outros_casos_s": 3.5, "raio_m": 0.85, "porosidade": 0.084775, "amostragem_hz": 33, "altura_m": 0.85 }
+    ]
+  },
+  "campos_formulario": [
+    { "id": "rocket_mass_kg", "rotulo": "Massa do foguete", "unidade": "kg", "tipo": "number", "valor_inicial": 2.79, "minimo": 0.1, "maximo": 1000 },
+    { "id": "cg_from_tail_m", "rotulo": "CG desde a cauda", "unidade": "m", "tipo": "number", "valor_inicial": 0.686, "minimo": 0, "maximo": 1.5 }
+  ],
+  "casos_voo": ["nominal", "ballistic", "main_apogee", "custom"]
+}

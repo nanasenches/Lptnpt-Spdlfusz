@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "id": "atlas",
+  "nome": "Atlas",
+  "versao_dados": "1.0.0",
+  "descricao": "Configuração de referência do Atlas usada pela MARI.",
+  "rocketpy_version": "1.13.0",
+  "incerteza": {
+    "massa_kg": 0.2,
+    "cg_m": 0.005,
+    "escala_empuxo": 0.0209,
+    "escala_arrasto": 0.05,
+    "cd_recuperacao_m2": 0.2,
+    "atraso_recuperacao_s": 0.032
+  },
+  "arrasto": { "interpolacao": "linear", "extrapolacao": "constant" },
+  "ambiente": {
+    "latitude": -21.9419,
+    "longitude": -48.9531,
+    "elevacao_m": 488.0,
+    "referencial": "WGS84",
+    "altura_maxima_m": 12000.0
+  },
+  "arquivos": {
+    "motor": "empuxo.eng",
+    "arrasto_ligado": "arrasto_on.csv",
+    "arrasto_desligado": "arrasto_off.csv",
+    "modelo_completo": "",
+    "modelo_corpo": "",
+    "modelo_coifa": ""
+  },
+  "foguete": {
+    "raio_m": 0.076,
+    "massa_kg": 14.946,
+    "inercia_kg_m2": [15.9, 15.9, 0.09221],
+    "centro_massa_sem_motor_m": 1.298,
+    "orientacao": "nose_to_tail",
+    "motor": {
+      "posicao_m": 2.702,
+      "massa_seca_kg": 8.88,
+      "inercia_seca_kg_m2": [1.065, 1.065, 0.02377],
+      "tempo_queima_s": 5.234,
+      "centro_massa_seco_m": 0.52105,
+      "numero_graos": 6,
+      "densidade_graos_kg_m3": 1730.0,
+      "raio_externo_grao_m": 0.045,
+      "raio_interno_inicial_grao_m": 0.01905,
+      "altura_inicial_grao_m": 0.14,
+      "separacao_graos_m": 0.012,
+      "centro_massa_graos_m": 0.5451,
+      "posicao_bocal_m": 0.0,
+      "raio_bocal_m": 0.03227,
+      "raio_garganta_m": 0.0135,
+      "orientacao_coordenadas": "nozzle_to_combustion_chamber",
+      "interpolacao": "linear"
+    },
+    "componentes": [
+      { "tipo": "nose", "nome": "Coifa Von Kármán", "comprimento_m": 0.85, "formato": "Von Karman", "posicao_m": 0.0 },
+      { "tipo": "trapezoidal_fins", "numero": 4, "corda_raiz_m": 0.29, "corda_ponta_m": 0.052, "envergadura_m": 0.1421, "posicao_m": 2.417, "angulo_cant_deg": 0.0, "comprimento_enflechamento_m": 0.228 },
+      { "tipo": "tail", "nome": "Boattail Cônico", "raio_superior_m": 0.076, "raio_inferior_m": 0.0645, "comprimento_m": 0.3, "posicao_m": 2.407 },
+      { "tipo": "rail_buttons", "posicao_superior_m": 1.63, "posicao_inferior_m": 2.382, "angulo_deg": 45.0 }
+    ],
+    "recuperacao": [
+      { "nome": "Main Atlas", "tipo": "main", "cd_area_m2": 5.7123, "diametro_m": 2.71, "gatilho": 450.0, "atraso_s": 0.118, "amostragem_hz": 50 },
+      { "nome": "Drogue Atlas", "tipo": "drogue", "cd_area_m2": 0.9379, "diametro_m": 1.2, "gatilho": "apogee", "atraso_s": 0.118, "amostragem_hz": 50 }
+    ]
+  },
+  "campos_formulario": [
+    { "id": "rocket_mass_kg", "rotulo": "Massa do foguete", "unidade": "kg", "tipo": "number", "valor_inicial": 14.946, "minimo": 0.1, "maximo": 1000 },
+    { "id": "cg_reference_m", "rotulo": "CG desde o nariz", "unidade": "m", "tipo": "number", "valor_inicial": 1.298, "minimo": 0, "maximo": 2.707 },
+    { "id": "inertia_xx_kg_m2", "rotulo": "Inércia transversal", "unidade": "kg·m²", "tipo": "number", "valor_inicial": 15.9, "minimo": 0.000001 },
+    { "id": "inertia_zz_kg_m2", "rotulo": "Inércia longitudinal", "unidade": "kg·m²", "tipo": "number", "valor_inicial": 0.09221, "minimo": 0.000001 },
+    { "id": "grain_density_kg_m3", "rotulo": "Densidade do propelente", "unidade": "kg/m³", "tipo": "number", "valor_inicial": 1730, "minimo": 1 },
+    { "id": "grain_separation_m", "rotulo": "Separação entre grãos", "unidade": "m", "tipo": "number", "valor_inicial": 0.012, "minimo": 0 }
+  ],
+  "casos_voo": ["nominal", "ballistic", "main_apogee", "drogue_only"]
+}

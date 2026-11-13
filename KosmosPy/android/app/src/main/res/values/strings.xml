@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">KosmosPy</string>
+    <string name="title_activity_main">KosmosPy</string>
+    <string name="package_name">br.com.codextruturas.consolevoo</string>
+    <string name="custom_url_scheme">br.com.codextruturas.consolevoo</string>
+</resources>
