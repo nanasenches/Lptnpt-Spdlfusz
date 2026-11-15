@@ -1,4 +1,4 @@
-name: Validar catálogo de foguetes
+name: Validar catálogo e arquivos dos foguetes
 
 on:
   push:
@@ -9,8 +9,8 @@ on:
       - '.github/workflows/validar-catalogo.yml'
   pull_request:
     paths:
-      - 'foguetes/**'
-      - 'scripts/validate-rocket-catalog.mjs'
+      - 'KosmosPy/foguetes/**'
+      - 'KosmosPy/scripts/validate-rocket-catalog.mjs'
       - '.github/workflows/validar-catalogo.yml'
   workflow_dispatch:
 
@@ -24,4 +24,4 @@ jobs:
       - name: Baixar o repositório
         uses: actions/checkout@v4
       - name: Validar catálogo e arquivos dos foguetes
-        run: node scripts/validate-rocket-catalog.mjs
+        run: node KosmosPy/scripts/validate-rocket-catalog.mjs
