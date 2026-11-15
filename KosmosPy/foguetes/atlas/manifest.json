@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "atlas",
   "nome": "Atlas",
-  "versao_dados": "1.0.0",
+  "versao_dados": "1.0.1",
   "descricao": "Configuração de referência do Atlas usada pela MARI.",
   "rocketpy_version": "1.13.0",
   "incerteza": {
